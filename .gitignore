@@ -1,0 +1,19 @@
+.DS_Store
+.venv/
+tmp/
+__pycache__/
+*.py[cod]
+
+# Reproduction caches and intermediate renders. Final paper figures live in figures/.
+experiments/val_cache/
+experiments/cv_*.json
+experiments/cv_replay_*.npz
+experiments/fig_*.pdf
+experiments/fig_*.png
+plots/fig1_data/
+plots/fig_order_data/
+plots/fig_passk_data/
+plots/gap_cache/
+plots/*.pdf
+plots/*.png
+plots/*.tex

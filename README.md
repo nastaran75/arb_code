@@ -1,5 +1,3 @@
-# Circumventing the Computational Hardness of Computational Arbitrage — code and data
-
 Anonymous code release. Everything the paper reports is regenerated from the per-problem data in
 `experiments/data/` by one script:
 
