@@ -1,0 +1,12 @@
+# Python 3.11. Pinned to the versions the paper's figures were produced with.
+#   python3.11 -m venv .venv && .venv/bin/pip install -r requirements.txt
+# Regenerating the figures from experiments/data/ needs only the first three packages.
+numpy==2.4.6
+scipy==1.17.1
+matplotlib==3.11.1
+# dataset builders only (experiments/datasets_build/: raw downloads, tokenizers, price sheets)
+requests==2.34.2
+pyarrow==25.0.1
+huggingface_hub==1.28.0
+tiktoken==0.14.0
+tokenizers==0.23.1
