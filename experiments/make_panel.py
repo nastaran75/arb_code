@@ -69,8 +69,7 @@ def compute(cfg, n_budget=70, extrapolate=False, ext_decades=4, estimator=None):
     solve rates is spuriously an expensive model); `floor` = bmin*P is where the cost panels clip.
 
     `estimator` (default ESTIMATOR): 'chen' = unbiased pass@k of Chen et al. with a randomized last
-    attempt, fit and evaluated through the tabulated path (arbitrage_tab; non-concave, grid-argmax
-    coordinate step); 'geom' = closed-form geometric plug-in (arbitrage.py; concave, certified).
+    attempt, fit and evaluated through the tabulated path; 'geom' = closed-form geometric plug-in.
     Allocations are always deployed in the greedy population order of Section 3."""
     estimator = estimator or ESTIMATOR
     base_dir, models = cfg["base_dir"], cfg["models"]

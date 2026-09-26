@@ -8,14 +8,12 @@ attempt costs). All are frozen at the n observed attempts (no extrapolation).
   Chen et al. (2021), 1 - C(n-c, k)/C(n, k), at integer k, with the continuous-time
   reading between integers (constant hazard within an attempt = log-linear failure
   probability; below one attempt this is exactly the geometric plug-in). Unbiased per
-  problem; log-concave in k (sampling without replacement), so the arbitrage objective
-  on these curves is not concave -> `arbitrage_tab.arbitrage_frontier(robust=True)`.
+  problem.
   "chen_lin": randomized last attempt (linear interpolation); "chen_int": floor(k), the
   grid-search convention of prior work (step functions).
 
 - "geom": plug-in geometric  u = 1 - (1 - p_hat)^{min(k, n)},  p_hat = c/n clamped at
-  1 - 1/(2n), with k = budget / q_m attempts. The model of the theory (concave
-  objective) but biased pessimistic for k > 1 (Jensen), most severely near k = n.
+  1 - 1/(2n), with k = budget / q_m attempts. 
   DEFAULT = NO EXTRAPOLATION past the n observed attempts: the curve is frozen at
   k = n (the (n+1)-th attempt costs money but adds no solve probability);
   `extrapolate=True` gives the plain 1 - (1 - p_hat)^k.
@@ -182,8 +180,6 @@ def chen_curve(c_col, n_col, k, integer_k=False, interp="loglinear"):
                   certain (F(ceil k) = 0) would have infinite hazard; that segment is interpolated linearly.
       'linear'  : randomized last attempt (failure probability linear between the integers).
       'integer' : floor(k) step function (the grid-search convention); `integer_k=True` selects it.
-    NOTE: at the integers the failure probability is log-CONCAVE in k (sampling without replacement),
-    so the arbitrage objective built on these curves is not concave (Theorem KKT does not apply)."""
     if integer_k:
         interp = "integer"
     P = c_col.size

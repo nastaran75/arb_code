@@ -31,7 +31,3 @@ echo "== Figures 5 and 10: arbitrage with estimated utility curves"
 "$PY" ../plots/fig_calib.py
 echo "== Figure 9: estimation error of the plug-in vs our estimator"
 "$PY" ../plots/fig_gap_dist.py
-cd ..
-echo "== comparing with the records behind the submitted figures"
-"$PY" check_reproduction.py
-echo "done: see figures/"

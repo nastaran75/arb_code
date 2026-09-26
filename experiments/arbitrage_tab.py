@@ -14,7 +14,7 @@ Conventions (see Appendix C of the paper):
     order for diagnostics.
   - solver: `arbitrage_frontier(robust=True)` takes, in each coordinate step, the exact
     argmax over the budget grid instead of assuming a monotone marginal; required for the
-    Chen curves, whose failure probability is log-concave in k (objective not concave).
+    Chen curves, whose failure probability is log-concave in k.
   - `lambda_grid`, `lams=`, `c_inits=`: a shared shadow-price grid and warm starts, used by
     `cv.py` to refit each cross-validation fold from the full-data solution.
 """
@@ -193,8 +193,7 @@ def _coord_ascent(U, dUdb, budget, lam, c0, sweeps=40, cap=None, robust=False):
     Default step assumes the marginal Mg(b) is decreasing in b (log-convex failure,
     e.g. 'geom') and interpolates the crossing Mg == lam. `robust=True` instead takes
     the exact argmax of the 1-D objective over the budget grid (the interpolated
-    objective is piecewise linear, so the grid argmax is exact) -- required for
-    non-concave curves such as the unbiased pass@k ('chen'), where Mg is not monotone."""
+    objective is piecewise linear, so the grid argmax is exact)
     M = U.shape[1]
     c = c0.copy()
     u_cur = np.stack([_interp_scalar(U[:, m, :], budget, c[m]) for m in range(M)], 1)

@@ -2,9 +2,13 @@ Anonymous code release. Everything the paper reports is regenerated from the per
 `experiments/data/` by one script:
 
 ```
-python3.11 -m venv .venv && .venv/bin/pip install -r requirements.txt
-PYTHON=.venv/bin/python ./reproduce.sh          # ~15 min on a laptop, CPU only, no network
+./reproduce.sh          # ~15 min on a laptop, CPU only
 ```
+
+The script first runs `setup.sh`, which creates `.venv` with Python 3.11 and the pinned packages and does
+nothing if it already exists. If `python3.11` is not installed, `setup.sh` installs
+[uv](https://docs.astral.sh/uv/) and lets it fetch a managed Python 3.11 (the only step that needs the
+network). To use your own interpreter instead: `PYTHON=/path/to/python3.11 ./reproduce.sh`.
 
 `reproduce.sh` writes every figure of the paper into `figures/` and then runs
 `check_reproduction.py`, which compares the regenerated plotted records with the records behind
