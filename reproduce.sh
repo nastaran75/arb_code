@@ -6,7 +6,7 @@ cd "$(dirname "$0")"
 export PYTHONDONTWRITEBYTECODE=1
 export MPLCONFIGDIR="${MPLCONFIGDIR:-${TMPDIR:-/tmp}/arbitrage-matplotlib}"
 mkdir -p "$MPLCONFIGDIR"
-if [ -z "${PYTHON:-}" ]; then ./setup.sh; PYTHON=.venv/bin/python; fi   # create .venv on first use
+if [ -z "${PYTHON:-}" ]; then bash setup.sh; PYTHON=.venv/bin/python; fi   # create .venv on first use
 PY=$PYTHON
 # The documented invocation passes a repository-relative interpreter
 # (`PYTHON=.venv/bin/python`).  Resolve path-like values before changing into
