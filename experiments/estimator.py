@@ -18,11 +18,9 @@ attempt costs). All are frozen at the n observed attempts (no extrapolation).
   k = n (the (n+1)-th attempt costs money but adds no solve probability);
   `extrapolate=True` gives the plain 1 - (1 - p_hat)^k.
 
-- "zibb": a zero-inflated Beta-Binomial extension of the Section-4 empirical-Bayes
-  posterior-predictive, used by the released Figure 5/10 records. Unlike the plain
-  Beta-Binomial method stated in Section 4, it adds a point mass at zero and a
-  concentration hyperprior. Per model fit
-  (a, b, pi0) by type-II MAP; per problem with c successes in n:
+- "zibb": the paper's Section-4 query-level empirical-Bayes estimator (Figures 5, 9, 10):
+  a Beta prior per model with a point mass at p = 0 and the (a+b)^-5/2 hyperprior,
+  fit by type-II MAP, and the per-problem posterior predictive. With c successes in n:
       c>0 : u(k) = 1 - Beta(a+c, b+n-c+k)/Beta(a+c, b+n-c)
       c=0 : u(k) = (1-ps)*(1 - Beta(a, b+n+k)/Beta(a, b+n)),
             ps = pi0 / (pi0 + (1-pi0)*Beta(a,b+n)/Beta(a,b))   [spike posterior]
@@ -179,7 +177,7 @@ def chen_curve(c_col, n_col, k, integer_k=False, interp="loglinear"):
                   is exactly the geometric plug-in (1-c/n)^k. The attempt whose completion makes success
                   certain (F(ceil k) = 0) would have infinite hazard; that segment is interpolated linearly.
       'linear'  : randomized last attempt (failure probability linear between the integers).
-      'integer' : floor(k) step function (the grid-search convention); `integer_k=True` selects it.
+      'integer' : floor(k) step function (the grid-search convention); `integer_k=True` selects it."""
     if integer_k:
         interp = "integer"
     P = c_col.size

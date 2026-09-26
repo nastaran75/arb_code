@@ -6,7 +6,8 @@ cd "$(dirname "$0")"
 export PYTHONDONTWRITEBYTECODE=1
 export MPLCONFIGDIR="${MPLCONFIGDIR:-${TMPDIR:-/tmp}/arbitrage-matplotlib}"
 mkdir -p "$MPLCONFIGDIR"
-PY=${PYTHON:-python}
+if [ -z "${PYTHON:-}" ]; then ./setup.sh; PYTHON=.venv/bin/python; fi   # create .venv on first use
+PY=$PYTHON
 # The documented invocation passes a repository-relative interpreter
 # (`PYTHON=.venv/bin/python`).  Resolve path-like values before changing into
 # experiments/ below; bare command names such as `python3` remain PATH lookups.
@@ -31,3 +32,4 @@ echo "== Figures 5 and 10: arbitrage with estimated utility curves"
 "$PY" ../plots/fig_calib.py
 echo "== Figure 9: estimation error of the plug-in vs our estimator"
 "$PY" ../plots/fig_gap_dist.py
+echo "done: see figures/"

@@ -10,10 +10,7 @@ nothing if it already exists. If `python3.11` is not installed, `setup.sh` insta
 [uv](https://docs.astral.sh/uv/) and lets it fetch a managed Python 3.11 (the only step that needs the
 network). To use your own interpreter instead: `PYTHON=/path/to/python3.11 ./reproduce.sh`.
 
-`reproduce.sh` writes every figure of the paper into `figures/` and then runs
-`check_reproduction.py`, which compares the regenerated plotted records with the records behind
-the submitted figures (`reference/`). Both are included so a reader can either re-run everything
-or only redraw.
+`reproduce.sh` writes every figure of the paper into `figures/`
 
 ## Figures
 
